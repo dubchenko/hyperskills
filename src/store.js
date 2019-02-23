@@ -15,8 +15,7 @@ export default new Vuex.Store({
     setUserSkills: (state, userSkills) => state.userSkills = userSkills,
   },
   getters: {
-    currentTab: state => {
-      return state.currentTab
-    }
+    currentTab: state => state.currentTab,
+    userSkills: state => state.userSkills
   }
 })

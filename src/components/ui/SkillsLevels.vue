@@ -1,7 +1,6 @@
 <template>
-  <div class="skills-levels">
-    <div class="levels">
-    </div>
+  <div class="skills-levels pb-3">
+    <div class="levels" />
     <div class="labels">
       <p>Не слышал об этом</p>
       <p>Имею представление</p>
@@ -19,11 +18,12 @@ export default {
 
 <style scoped>
 .skills-levels {
-  max-width: 555px;
+
 }
 
 .levels {
-  max-width: 555px;
+  width: 100%;
+  margin-bottom: 15px;
   height: 27px;
   background: url('../../assets/levels.svg') no-repeat;
   background-position: center;
@@ -35,6 +35,9 @@ export default {
 }
 
 .labels p {
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
   width: 25%;
 }
 

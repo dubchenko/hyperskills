@@ -9,7 +9,7 @@
         @mouseover="setHover(i)"
         @mouseleave="resetHover"
         @click="setScore(i)"
-        :class="['level level_' + i, (value >= i || hoverItem >= i) && ('level_' + i + '_active')]"
+        :class="['level level_' + i, (hoverItem >= i || value >= i) && ('level_' + i + '_active')]"
       />
     </template>
     <!-- <button

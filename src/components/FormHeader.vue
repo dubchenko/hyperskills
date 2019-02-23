@@ -29,8 +29,7 @@ export default {
 
 <style scoped>
 .form_header {
-  padding: 45px 0 40px 0;
-  text-align: center;
+
 }
 
 .nav_button {
