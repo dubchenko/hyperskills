@@ -2,26 +2,26 @@
   {
     "slug": "html",
     "title":  "HTML Верстка",
-    "score": 0
+    "score": 1
   },
   {
     "slug": "bootstrap",
     "title":  "Bootstrap",
-    "score": 0
+    "score": 1
   },
   {
     "slug": "vue",
     "title":  "Vue.js",
-    "score": 0
+    "score": 1
   },
   {
     "slug": "svg",
     "title":  "Работа с SVG",
-    "score": 0
+    "score": 2
   },
   {
     "slug": "json",
     "title":  "Работа с JSON API",
-    "score": 0
+    "score": 4
   }
 ]

@@ -1,77 +1,65 @@
 <template>
 <div>
-  <b-card no-body>
-    <b-tabs small card v-model="currentTab">
-      <b-tab title="General">
-        <div v-for="item in skills" class="">
-          {{ item.title }}
-          <input v-model="item.score">
-        </div>
-      </b-tab>
-      <button @click="save">Save</button>
-      <b-tab title="Edit profile">
-        <!-- <b-form-textarea
-          v-model="text"
-          placeholder="Enter something"
-          rows="3"
-          max-rows="6"
-        /> -->
-      </b-tab>
-      <b-tab title="Info">I'm the last tab</b-tab>
-    </b-tabs>
+  <!-- <SkillsLevels /> -->
+  <b-card class="test">
+    <template slot="header">
+      <form-header
+        :currentStep="currentStep"
+        @changeStep="changeStep"
+      />
+    </template>
+    <step-one v-if="currentStep == 1" />
+    <step-two v-if="currentStep == 2" />
+    <step-three v-if="currentStep == 3" />
+    <b-button href="#" variant="primary">Go somewhere</b-button>
   </b-card>
-  <div class="text-center">
-    <b-button-group class="mt-2">
-      <b-button @click="currentTab--">Previous</b-button>
-      <b-button @click="currentTab++">Next</b-button>
-    </b-button-group>
-    <div class="text-muted">Current Tab: {{ currentTab }}</div>
-  </div>
 </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import FormHeader from '@/components/FormHeader'
+
+import StepOne from '@/components/StepOne.vue'
+import StepTwo from '@/components/StepTwo.vue'
+import StepThree from '@/components/StepThree.vue'
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    FormHeader,
+    StepOne,
+    StepTwo,
+    StepThree
   },
   data() {
     return {
-      skills: null
+      skills: null,
     }
   },
   computed: {
-    currentTab: {
-      get: function() {
-				return this.$store.getters.currentTab;
-			},
-			set: function(value) {
-				this.$store.commit('setCurrentTab', value);
-			},
+    currentStep() {
+			return this.$store.getters.currentTab;
     }
   },
-  mounted() {
-    fetch('/data/skills.json')
-      .then(r => r.json())
-      .then(json => {
-        this.getSkills(json)
-      })
-  },
   methods: {
-    getSkills(userSkills) {
-      if (this.$store.state.userSkills) {
-        this.skills = this.$store.state.userSkills
-      } else {
-        this.skills = userSkills
-      }
-    },
     save() {
       this.$store.commit('setUserSkills', this.skills)
+    },
+    changeStep(i)  {
+      this.$store.commit('setCurrentTab', i);
     }
   },
 }
 </script>
+
+<style scoped>
+.test {
+  min-width: 684px;
+}
+
+.card-header {
+  background-color: #FFF;
+  border-bottom: 1px solid rgba(0, 0, 0, .25);
+}
+</style>
