@@ -70,6 +70,7 @@ export default {
     changeStep(i)  {
       if (i.isMainButton && this.isApproved) {
         this.sendForm()
+        return
       }
       if (i.isMainButton && this.currentStep == 3) {
         this.$store.commit('setApproved')
