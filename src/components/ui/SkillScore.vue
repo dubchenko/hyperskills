@@ -8,11 +8,12 @@
     <div class="score_levels">
       <template v-for="i in 4">
         <div
+          :key="i"
           @mouseover="setHover(i)"
           @mouseleave="resetHover"
           @click="setScore(i)"
           :class="'level level_' + i"
-          :active="(hoverItem >= i || value >= i)"
+          :active="hoverItem >= i || (value >= i && !hoverItem)"
         />
       </template>
     </div>
