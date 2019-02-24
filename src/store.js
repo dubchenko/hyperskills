@@ -7,7 +7,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     currentStep: 1,
-    userSkills: null,
+    applyForm: {
+      skills: null,
+      biography: '',
+    },
     isApproved: false,
     isLoading: false,
     isSended: false,
@@ -20,7 +23,8 @@ export default new Vuex.Store({
         state.currentStep = stepNumber
       }
     },
-    setUserSkills: (state, userSkills) => state.userSkills = userSkills,
+    setSkills: (state, skills) => state.applyForm.skills = skills,
+    setBiography: (state, biography) => state.applyForm.biography = biography,
     setApproved: state => state.isApproved = true,
     setLoading: (state, loadingStatus) => state.isLoading = loadingStatus,
     setSended: state => state.isSended = true,
@@ -30,7 +34,8 @@ export default new Vuex.Store({
   },
   getters: {
     currentStep: state => state.currentStep,
-    userSkills: state => state.userSkills,
+    skills: state => state.applyForm.skills,
+    biography: state => state.applyForm.biography,
     isApproved: state => state.isApproved,
     isLoading: state => state.isLoading,
     isSended: state => state.isSended,

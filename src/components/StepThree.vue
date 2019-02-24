@@ -1,6 +1,6 @@
 <template>
   <div class="form-body">
-    <h3 class="step-title mb-5">
+    <h3 class="step-title">
       Шаг 3:
       {{ isApproved ? 'Подтверди данные и отправить их' : 'Подтверди данные' }}
     </h3>
@@ -29,7 +29,7 @@ export default {
   },
   computed: {
     skills() {
-			return this.$store.getters.userSkills;
+			return this.$store.getters.skills;
     },
     isApproved() {
       return this.$store.getters.isApproved;

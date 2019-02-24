@@ -1,6 +1,6 @@
 <template>
 <div class="form-body">
-  <h3 class="step-title mb-4">Шаг 1: Расскажи нам о своих навыках</h3>
+  <h3 class="step-title">Шаг 1: Расскажи нам о своих навыках</h3>
   <skills-levels />
   <div class="skills-list">
     <div v-for="item in skills" :key="item.slug" class="skill-item py-3">
@@ -38,13 +38,13 @@ export default {
     fetch('data/skills.json')
       .then(r => r.json())
       .then(json => {
-        this.$store.state.userSkills ? this.skills = this.$store.state.userSkills : this.skills = json
+        this.$store.getters.skills ? this.skills = this.$store.getters.skills : this.skills = json
       })
 
     this.$store.subscribe(mutation => {
       if (mutation.type === 'setCurrentStep')
-        if (this.$store.getters.userSkills !== this.skills)
-          this.$store.commit('setUserSkills', this.skills)
+        if (this.$store.getters.skills !== this.skills)
+          this.$store.commit('setSkills', this.skills)
 
     });
   },

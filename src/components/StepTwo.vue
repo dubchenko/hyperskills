@@ -1,8 +1,8 @@
 <template>
   <div class="form-body">
-    <h3 class="step-title mb-5">Шаг 2: Расскажи о себе</h3>
+    <h3 class="step-title">Шаг 2: Расскажи о себе</h3>
     <b-form-textarea
-      v-model="text"
+      v-model="biography"
       placeholder="Немного обо мне"
       rows="14"
     />
@@ -17,18 +17,28 @@ export default {
   name: "StepTwo",
   data() {
     return {
-      text: '',
+      biography: this.$store.getters.biography,
     }
   },
   computed: {
     textLength() {
-      return this.text.length
+      return this.biography.length
     }
-  }
+  },
+  mounted() {
+    this.$store.subscribe(mutation => {
+      if (mutation.type === 'setCurrentStep')
+        this.$store.commit('setBiography', this.biography)
+    });
+  },
 }
 </script>
 
 <style scoped>
+.form-control {
+    padding: 25px;
+}
+
 .text-counter {
   text-align: right;
   color: rgba(0, 0, 0, .25);

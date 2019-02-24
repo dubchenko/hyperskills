@@ -69,6 +69,7 @@ h4 {
 
 .step-title {
   text-align: center;
+  margin-bottom: 35px !important;
 }
 
 .icon {

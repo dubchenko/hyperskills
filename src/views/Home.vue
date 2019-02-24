@@ -76,9 +76,6 @@ export default {
     }
   },
   methods: {
-    save() {
-      this.$store.commit('setUserSkills', this.skills)
-    },
     changeStep(i)  {
       if (this.isSended) {
         return

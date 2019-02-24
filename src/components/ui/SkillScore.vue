@@ -66,6 +66,7 @@ export default {
 .level {
   margin: 0 1px;
   background-color: #C4C4C4;
+  transition: all .2s ease-in;
   width: 32%;
   height: 10px;
 }
