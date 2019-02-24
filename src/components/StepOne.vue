@@ -1,14 +1,14 @@
 <template>
-<div class="form_body step_one">
-  <h3 class="step_title mb-4">Шаг 1: Расскажи нам о своих навыках</h3>
+<div class="form-body">
+  <h3 class="step-title mb-4">Шаг 1: Расскажи нам о своих навыках</h3>
   <skills-levels />
-  <div class="skills_list">
-    <div v-for="item in skills" :key="item.slug" class="skill py-3">
-      <div class="skill_title">
+  <div class="skills-list">
+    <div v-for="item in skills" :key="item.slug" class="skill-item py-3">
+      <div class="skill-title">
         <h4>{{ item.title }}</h4>
         <p>{{ levelsTitles[item.score] }}</p>
       </div>
-      <div class="skill_level">
+      <div class="skill-score">
         <skill-score v-model="item.score" :item="item" />
       </div>
     </div>
@@ -52,14 +52,18 @@ export default {
 </script>
 
 <style scoped>
-p {
-  color: rgba(0, 0, 0, 0.5);
-}
-
-.skill {
+.skill-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid rgba(0, 0, 0, .12);
+}
+
+.skill-item:last-child {
+  border-bottom: none;
+}
+
+.skill-title p {
+  color: rgba(0, 0, 0, 0.5);
 }
 </style>

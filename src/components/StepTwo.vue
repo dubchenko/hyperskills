@@ -1,12 +1,12 @@
 <template>
-  <div class="form_body step_two">
-    <h3 class="step_title mb-5">Шаг 2: Расскажи о себе</h3>
+  <div class="form-body">
+    <h3 class="step-title mb-5">Шаг 2: Расскажи о себе</h3>
     <b-form-textarea
       v-model="text"
       placeholder="Немного обо мне"
       rows="14"
     />
-    <div class="text_counter mt-2">
+    <div class="text-counter mt-2">
       <p>Длина: {{ textLength }}</p>
     </div>
   </div>
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style scoped>
-.text_counter {
+.text-counter {
   text-align: right;
   color: rgba(0, 0, 0, .25);
 }

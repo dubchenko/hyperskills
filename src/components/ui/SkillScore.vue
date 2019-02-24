@@ -1,17 +1,18 @@
 <template>
-  <div class="test">
+  <div class="score-selector">
     <span
       class="icon icon-minus mr-2"
       :class="{'icon-disabled' : value == 1}"
       @click="setScore(value - 1)"
     />
-    <div class="skill_levels">
+    <div class="score_levels">
       <template v-for="i in 4">
         <div
           @mouseover="setHover(i)"
           @mouseleave="resetHover"
           @click="setScore(i)"
-          :class="['level level_' + i, (hoverItem >= i || value >= i) && ('level_' + i + '_active')]"
+          :class="'level level_' + i"
+          :active="(hoverItem >= i || value >= i)"
         />
       </template>
     </div>
@@ -51,11 +52,11 @@ export default {
 </script>
 
 <style scoped>
-.test {
+.score-selector {
   display: flex;
 }
 
-.skill_levels {
+.score_levels {
   display: flex;
   align-items: center;
   width: 144px;
@@ -73,24 +74,24 @@ export default {
 }
 
 .level_1:hover,
-.level_1_active {
+.level_1[active] {
   background: #202257;
 }
 
 .level_2:hover,
-.level_2_active {
+.level_2[active] {
   opacity: .8;
   background: #1EB295;
 }
 
 .level_3:hover,
-.level_3_active {
+.level_3[active] {
   opacity: .9;
   background: #1EB295;
 }
 
 .level_4:hover,
-.level_4_active {
+.level_4[active] {
   background: #1EB295;
 }
 </style>

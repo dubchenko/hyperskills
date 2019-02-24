@@ -1,25 +1,30 @@
 [
   {
+    "id": 0,
     "slug": "html",
     "title":  "HTML Верстка",
     "score": 1
   },
   {
+    "id": 1,
     "slug": "bootstrap",
     "title":  "Bootstrap",
     "score": 1
   },
   {
+    "id": 2,
     "slug": "vue",
     "title":  "Vue.js",
     "score": 1
   },
   {
+    "id": 3,
     "slug": "svg",
     "title":  "Работа с SVG",
     "score": 1
   },
   {
+    "id": 4,
     "slug": "json",
     "title":  "Работа с JSON API",
     "score": 1

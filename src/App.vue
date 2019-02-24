@@ -67,7 +67,7 @@ h4 {
   font-size: 16px !important;
 }
 
-.step_title {
+.step-title {
   text-align: center;
 }
 
@@ -98,6 +98,20 @@ h4 {
   width: 17px;
   animation: spin 4s linear infinite;
   background: url("assets/loading.svg")
+}
+
+.btn-primary {
+  background-color: #0E73EE !important;
+  border-color: #0E73EE !important;
+}
+
+.btn-link {
+  color: #0e73ee !important;
+}
+
+.btn-success {
+  background-color: #1EB295 !important;
+  border-color: #1EB295 !important;
 }
 
 @keyframes spin {

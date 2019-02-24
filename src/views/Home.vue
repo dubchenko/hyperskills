@@ -1,7 +1,6 @@
 <template>
 <div>
-  <!-- <SkillsLevels /> -->
-  <b-card class="apply_form">
+  <b-card class="apply-form">
     <template slot="header">
       <form-header
         :currentStep="currentStep"
@@ -115,7 +114,7 @@ export default {
 </script>
 
 <style scoped>
-.apply_form {
+.apply-form {
   width: 684px;
 }
 

@@ -1,6 +1,6 @@
 <template>
-<div class="form_footer">
-  <div v-if="currentStep !== 1" class="form_footer-left">
+<div class="form-footer">
+  <div v-if="currentStep !== 1" class="form-footer_left">
     <b-button
       class="button_back"
       @click="changeStep(currentStep - 1)"
@@ -9,7 +9,7 @@
       Назад
     </b-button>
   </div>
-  <div :class="{ 'form_footer-right' : currentStep !== 1 }">
+  <div :class="{ 'form-footer_right' : currentStep !== 1 }">
     <b-button
       @click="changeStep(currentStep + 1, true)"
       size="lg"
@@ -20,7 +20,7 @@
         class="icon icon-loading"
         v-if="isLoading"
       />
-      {{ isError ? "Ошибка" : (isSended ? "Отправлено" : (isLoading ? "Отправляем" : (isApproved ? "Отправить" :"Продолжить"))) }}
+      {{ buttonText }}
     </b-button>
   </div>
 </div>
@@ -40,22 +40,35 @@ export default {
     changeStep(i, isMainButton = false)  {
       this.$emit("changeStep", { 'step': i, 'isMainButton': isMainButton })
     },
+  },
+  computed: {
+    buttonText() {
+      if (this.isError)
+        return "Ошибка"
+      if (this.isSended)
+        return "Отправлено"
+      if (this.isLoading)
+        return "Отправляем"
+      if (this.isApproved)
+        return "Отправить"
+      return "Продолжить"
+    }
   }
 }
 </script>
 
 <style>
-.form_footer {
+.form-footer {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.form_footer-left {
+.form-footer_left {
   flex-grow: 1;
 }
 
-.form_footer-right {
+.form-footer_right {
   flex-grow: 1.55;
 }
 </style>

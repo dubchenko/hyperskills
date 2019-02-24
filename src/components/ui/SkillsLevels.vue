@@ -1,51 +1,51 @@
 <template>
   <div class="skills-levels pb-3">
-    <div class="levels" />
-    <div class="labels">
-      <p>Не слышал об этом</p>
-      <p>Имею представление</p>
-      <p>Умею применять</p>
-      <p>Отлично разбираюсь</p>
+    <div class="levels-chart" />
+    <div class="levels-titles">
+      <p v-for="(title, index) in levelsTitles" :key="index">{{ title }}</p>
     </div>
   </div>
 </template>
 
 <script>
+import { levelsTitles } from "@/assets/skills.js"
+
 export default {
-  name: "SkillsLevels"
+  name: "SkillsLevels",
+  data() {
+    return {
+      levelsTitles: levelsTitles
+    }
+  }
 }
 </script>
 
 <style scoped>
-.skills-levels {
-
-}
-
-.levels {
+.levels-chart {
   width: 100%;
   margin-bottom: 15px;
-  height: 27px;
+  height: 28px;
   background: url('../../assets/levels.svg') no-repeat;
   background-position: center;
   background-size: contain;
 }
 
-.labels {
+.levels-titles {
   display: flex;
 }
 
-.labels p {
+.levels-titles p {
   text-align: center;
   font-size: 14px;
   font-weight: bold;
   width: 25%;
 }
 
-.labels p:first-child {
+.levels-titles p:first-child {
   text-align: left;
 }
 
-.labels p:last-child {
+.levels-titles p:last-child {
   text-align: right;
 }
 </style>

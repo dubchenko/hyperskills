@@ -1,15 +1,15 @@
 <template>
-  <div class="form_body step_three">
-    <h3 class="step_title mb-5">
+  <div class="form-body">
+    <h3 class="step-title mb-5">
       Шаг 3:
       {{ isApproved ? 'Подтверди данные и отправить их' : 'Подтверди данные' }}
     </h3>
-    <div class="skills_list">
-      <div v-for="item in skills" :key="item.slug" class="skill py-4">
-        <div class="skill_title">
+    <div class="skills-list">
+      <div v-for="item in skills" :key="item.slug" class="skill-item py-4">
+        <div class="skill-title">
           <h4>{{ item.title }}</h4>
         </div>
-        <div class="skill_level">
+        <div class="skill-level">
           <p>{{ levelsTitles[item.score] }}</p>
         </div>
       </div>
@@ -38,19 +38,19 @@ export default {
 }
 </script>
 
-<style>
-.skill {
+<style scoped>
+.skill-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid rgba(0, 0, 0, .12);
 }
 
-.skill:first-child {
+.skill-item:first-child {
   border-top: 1px solid rgba(0, 0, 0, .12);
 }
 
-.skill_level p {
+.skill-level p {
   opacity: .5;
 }
 </style>

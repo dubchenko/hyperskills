@@ -1,12 +1,12 @@
 <template>
-  <div class="form_header">
+  <div class="form-header">
     <h1>Вступительное испытание</h1>
     <div class="mt-4">
       <template v-for="i in 3">
         <b-button
           :key="i"
           @click="changeStep(i)"
-          class="nav_button"
+          class="header-nav-button"
           :variant="(currentStep == i) ? 'primary' : 'link'"
         >шаг {{ i }}</b-button>
       </template>
@@ -29,15 +29,11 @@ export default {
 </script>
 
 <style scoped>
-.form_header {
-
-}
-
-.nav_button {
+.header-nav-button {
   margin-right: 15px;
 }
 
-.nav_button:last-child {
+.header-nav-button:last-child {
   margin-right: 0px;
 }
 </style>
