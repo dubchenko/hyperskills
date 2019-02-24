@@ -3,7 +3,7 @@
   <h3 class="step_title mb-4">Шаг 1: Расскажи нам о своих навыках</h3>
   <skills-levels />
   <div class="skills_list">
-    <div v-for="item in skills" class="skill py-3">
+    <div v-for="item in skills" :key="item.slug" class="skill py-3">
       <div class="skill_title">
         <h4>{{ item.title }}</h4>
         <template class="">

@@ -68,7 +68,7 @@ export default {
       this.$store.commit('setUserSkills', this.skills)
     },
     changeStep(i)  {
-      if (this.isApproved) {
+      if (i.isMainButton && this.isApproved) {
         this.sendForm()
       }
       if (i.isMainButton && this.currentStep == 3) {

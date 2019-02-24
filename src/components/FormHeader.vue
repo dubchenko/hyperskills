@@ -4,6 +4,7 @@
     <div class="mt-4">
       <template v-for="i in 3">
         <b-button
+          :key="i"
           @click="changeStep(i)"
           class="nav_button"
           :variant="(currentStep == i) ? 'primary' : 'link'"

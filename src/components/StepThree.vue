@@ -5,7 +5,7 @@
       {{ isApproved ? 'Подтверди данные и отправить их' : 'Подтверди данные' }}
     </h3>
     <div class="skills_list">
-      <div v-for="item in skills" class="skill py-4">
+      <div v-for="item in skills" :key="item.slug" class="skill py-4">
         <div class="skill_title">
           <h4>{{ item.title }}</h4>
         </div>
