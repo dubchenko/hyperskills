@@ -1,6 +1,6 @@
 <template>
   <div class="form_body step_two">
-    <h3 class="step_title mb-4">Шаг 2: Расскажи о себе</h3>
+    <h3 class="step_title mb-5">Шаг 2: Расскажи о себе</h3>
     <b-form-textarea
       v-model="text"
       placeholder="Немного обо мне"

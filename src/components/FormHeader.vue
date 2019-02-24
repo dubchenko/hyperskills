@@ -6,7 +6,7 @@
         <b-button
           @click="changeStep(i)"
           class="nav_button"
-          :variant="(currentStep == i) ? 'primary' : 'light'"
+          :variant="(currentStep == i) ? 'primary' : 'link'"
         >шаг {{ i }}</b-button>
       </template>
     </div>
@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     changeStep(i) {
-      this.$emit('changeStep', i)
+      this.$emit('changeStep', { 'step': i })
     }
   }
 }

@@ -1,21 +1,25 @@
 <template>
-  <div class="skill_levels">
-    <!-- <button
-      :disabled="value == 1"
+  <div class="test">
+    <span
+      class="icon icon-minus mr-2"
+      :class="{'icon-disabled' : value == 1}"
       @click="setScore(value - 1)"
-    >-</button> -->
-    <template v-for="i in 4">
-      <div
-        @mouseover="setHover(i)"
-        @mouseleave="resetHover"
-        @click="setScore(i)"
-        :class="['level level_' + i, (hoverItem >= i || value >= i) && ('level_' + i + '_active')]"
-      />
-    </template>
-    <!-- <button
-      :disabled="value == 4"
+    />
+    <div class="skill_levels">
+      <template v-for="i in 4">
+        <div
+          @mouseover="setHover(i)"
+          @mouseleave="resetHover"
+          @click="setScore(i)"
+          :class="['level level_' + i, (hoverItem >= i || value >= i) && ('level_' + i + '_active')]"
+        />
+      </template>
+    </div>
+    <span
+      class="icon icon-plus ml-2"
+      :class="{'icon-disabled' : value == 4}"
       @click="setScore(value + 1)"
-    >+</button> -->
+    />
   </div>
 </template>
 
@@ -38,15 +42,22 @@ export default {
       this.hoverItem = null
     },
     setScore(i) {
-      this.$emit('input', i)
+      if (i >= 1 && i <= 4) {
+        this.$emit('input', i)
+      }
     }
   }
 }
 </script>
 
 <style scoped>
+.test {
+  display: flex;
+}
+
 .skill_levels {
   display: flex;
+  align-items: center;
   width: 144px;
 }
 

@@ -6,16 +6,29 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    currentTab: 0,
+    currentStep: 1,
     userSkills: null,
+    isApproved: false,
+    isLoading: false,
+    isSended: false,
   },
   plugins: [createPersistedState()],
   mutations: {
-    setCurrentTab: (state, tabNumber) => state.currentTab = tabNumber,
+    setCurrentStep: (state, tabNumber) => {
+      if (!state.isSended) {
+        state.currentStep = tabNumber
+      }
+    },
     setUserSkills: (state, userSkills) => state.userSkills = userSkills,
+    setApproved: state => state.isApproved = true,
+    setLoading: (state, loadingStatus) => state.isLoading = loadingStatus,
+    setSended: state => state.isSended = true,
   },
   getters: {
-    currentTab: state => state.currentTab,
-    userSkills: state => state.userSkills
+    currentStep: state => state.currentStep,
+    userSkills: state => state.userSkills,
+    isApproved: state => state.isApproved,
+    isLoading: state => state.isLoading,
+    isSended: state => state.isSended,
   }
 })

@@ -7,7 +7,7 @@
       <div class="skill_title">
         <h4>{{ item.title }}</h4>
         <template class="">
-          <p v-if="item.score == 1">Не слышала об этом</p>
+          <p v-if="item.score == 1">Не слышал об этом</p>
           <p v-else-if="item.score == 2">Имею представление</p>
           <p v-else-if="item.score == 3">Умею применять</p>
           <p v-else-if="item.score == 4">Отлично разбираюсь</p>
@@ -44,23 +44,18 @@ export default {
       })
 
     this.$store.subscribe(mutation => {
-      if (mutation.type === 'setCurrentTab') {
+      if (mutation.type === 'setCurrentStep')
         if (this.$store.getters.userSkills !== this.skills)
           this.$store.commit('setUserSkills', this.skills)
-        }
+
     });
   },
 }
 </script>
 
 <style scoped>
-h4 {
-  margin-bottom: 0 !important;
-}
-
 p {
   color: rgba(0, 0, 0, 0.5);
-  margin: 0;
 }
 
 .skill {

@@ -8,12 +8,20 @@
         @changeStep="changeStep"
       />
     </template>
+    <!-- <component
+      is="step-one"
+    /> -->
     <step-one v-if="currentStep == 1" />
     <step-two v-if="currentStep == 2" />
     <step-three v-if="currentStep == 3" />
     <template slot="footer">
-      <b-button class="button_back" v-if="currentStep !== 1" @click="changeStep(currentStep - 1)" variant="link">Назад</b-button>
-      <b-button @click="changeStep(currentStep + 1)" size="lg" variant="primary">Продолжить</b-button>
+      <form-footer
+        :currentStep="currentStep"
+        :isApproved="isApproved"
+        :isLoading="isLoading"
+        :isSended="isSended"
+        @changeStep="changeStep"
+      />
     </template>
   </b-card>
 </div>
@@ -21,6 +29,7 @@
 
 <script>
 import FormHeader from '@/components/FormHeader'
+import FormFooter from '@/components/FormFooter'
 
 import StepOne from '@/components/StepOne.vue'
 import StepTwo from '@/components/StepTwo.vue'
@@ -30,6 +39,7 @@ export default {
   name: 'home',
   components: {
     FormHeader,
+    FormFooter,
     StepOne,
     StepTwo,
     StepThree
@@ -41,7 +51,16 @@ export default {
   },
   computed: {
     currentStep() {
-			return this.$store.getters.currentTab;
+			return this.$store.getters.currentStep;
+    },
+    isApproved() {
+      return this.$store.getters.isApproved;
+    },
+    isLoading() {
+      return this.$store.getters.isLoading;
+    },
+    isSended() {
+      return this.$store.getters.isSended;
     }
   },
   methods: {
@@ -49,7 +68,21 @@ export default {
       this.$store.commit('setUserSkills', this.skills)
     },
     changeStep(i)  {
-      this.$store.commit('setCurrentTab', i);
+      if (this.isApproved) {
+        this.sendForm()
+      }
+      if (i.isMainButton && this.currentStep == 3) {
+        this.$store.commit('setApproved')
+      } else {
+        this.$store.commit('setCurrentStep', i.step);
+      }
+    },
+    sendForm() {
+      this.$store.commit('setLoading', true)
+      setTimeout(() => {
+        this.$store.commit('setLoading', false)
+        this.$store.commit('setSended')
+      }, 5000)
     }
   },
 }
@@ -71,7 +104,6 @@ export default {
 }
 
 .card-footer {
-  text-align: center;
   padding: 20px 50px 40px 50px;
   border: 0;
   background-color: #FFF;

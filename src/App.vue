@@ -42,11 +42,16 @@
   background-color: #303142;
 }
 
-h1, h3, h4, p {
+h1,
+h3,
+h4,
+p {
   margin: 0 !important;
 }
 
-h1, h3, h4 {
+h1,
+h3,
+h4 {
   font-weight: bold !important;
 }
 
@@ -63,6 +68,41 @@ h4 {
 }
 
 .step_title {
-    text-align: center;
+  text-align: center;
+}
+
+.icon {
+  display: inline-block;
+  height: 19px;
+  width: 19px;
+  cursor: pointer;
+  background-position: center !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+}
+
+.icon-disabled {
+  opacity: .25;
+}
+
+.icon-minus {
+  background: url("assets/sign_minus.svg");
+}
+
+.icon-plus {
+  background: url("assets/sign_plus.svg");
+}
+
+.icon-loading {
+  height: 17px;
+  width: 17px;
+  animation: spin 4s linear infinite;
+  background: url("assets/loading.svg")
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

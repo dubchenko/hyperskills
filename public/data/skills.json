@@ -17,11 +17,11 @@
   {
     "slug": "svg",
     "title":  "Работа с SVG",
-    "score": 2
+    "score": 1
   },
   {
     "slug": "json",
     "title":  "Работа с JSON API",
-    "score": 4
+    "score": 1
   }
 ]
