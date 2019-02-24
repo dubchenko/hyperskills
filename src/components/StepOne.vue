@@ -6,12 +6,7 @@
     <div v-for="item in skills" :key="item.slug" class="skill py-3">
       <div class="skill_title">
         <h4>{{ item.title }}</h4>
-        <template class="">
-          <p v-if="item.score == 1">Не слышал об этом</p>
-          <p v-else-if="item.score == 2">Имею представление</p>
-          <p v-else-if="item.score == 3">Умею применять</p>
-          <p v-else-if="item.score == 4">Отлично разбираюсь</p>
-        </template>
+        <p>{{ levelsTitles[item.score] }}</p>
       </div>
       <div class="skill_level">
         <skill-score v-model="item.score" :item="item" />
@@ -25,6 +20,8 @@
 import SkillsLevels from "./ui/SkillsLevels"
 import SkillScore from "./ui/SkillScore"
 
+import { levelsTitles } from "@/assets/skills.js"
+
 export default {
   name: "StepOne",
   components: {
@@ -34,6 +31,7 @@ export default {
   data() {
     return {
       skills: null,
+      levelsTitles: levelsTitles
     }
   },
   mounted() {

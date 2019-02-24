@@ -10,12 +10,7 @@
           <h4>{{ item.title }}</h4>
         </div>
         <div class="skill_level">
-          <template class="">
-            <p v-if="item.score == 1">Не слышал об этом</p>
-            <p v-else-if="item.score == 2">Имею представление</p>
-            <p v-else-if="item.score == 3">Умею применять</p>
-            <p v-else-if="item.score == 4">Отлично разбираюсь</p>
-          </template>
+          <p>{{ levelsTitles[item.score] }}</p>
         </div>
       </div>
     </div>
@@ -23,8 +18,15 @@
 </template>
 
 <script>
+import { levelsTitles } from "@/assets/skills.js"
+
 export default {
   name: "StepThree",
+  data() {
+    return {
+      levelsTitles: levelsTitles
+    }
+  },
   computed: {
     skills() {
 			return this.$store.getters.userSkills;

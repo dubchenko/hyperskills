@@ -8,18 +8,16 @@
         @changeStep="changeStep"
       />
     </template>
-    <!-- <component
-      is="step-one"
-    /> -->
-    <step-one v-if="currentStep == 1" />
-    <step-two v-if="currentStep == 2" />
-    <step-three v-if="currentStep == 3" />
+    <component
+      :is="currentComponent"
+    />
     <template slot="footer">
       <form-footer
         :currentStep="currentStep"
         :isApproved="isApproved"
         :isLoading="isLoading"
         :isSended="isSended"
+        :isError="isError"
         @changeStep="changeStep"
       />
     </template>
@@ -50,8 +48,20 @@ export default {
     }
   },
   computed: {
+    currentComponent() {
+			switch (this.$store.getters.currentStep) {
+        case 1:
+          return 'step-one'
+        case 2:
+          return 'step-two'
+        case 3:
+          return 'step-three'
+        default:
+          return 'step-one'
+      }
+    },
     currentStep() {
-			return this.$store.getters.currentStep;
+      return this.$store.getters.currentStep
     },
     isApproved() {
       return this.$store.getters.isApproved;
@@ -61,6 +71,9 @@ export default {
     },
     isSended() {
       return this.$store.getters.isSended;
+    },
+    isError() {
+      return this.$store.getters.isError;
     }
   },
   methods: {
@@ -68,10 +81,15 @@ export default {
       this.$store.commit('setUserSkills', this.skills)
     },
     changeStep(i)  {
+      if (this.isSended) {
+        return
+      }
+
       if (i.isMainButton && this.isApproved) {
         this.sendForm()
         return
       }
+
       if (i.isMainButton && this.currentStep == 3) {
         this.$store.commit('setApproved')
       } else {
@@ -81,9 +99,16 @@ export default {
     sendForm() {
       this.$store.commit('setLoading', true)
       setTimeout(() => {
+        let result = Math.random() >= 0.5
         this.$store.commit('setLoading', false)
-        this.$store.commit('setSended')
-      }, 5000)
+        result ? this.$store.commit('setSended') : this.handleError()
+      }, 3000)
+    },
+    handleError() {
+      this.$store.commit('setError', true)
+      setTimeout(() => {
+        this.$store.commit('setError', false)
+      }, 1500)
     }
   },
 }
@@ -91,7 +116,7 @@ export default {
 
 <style scoped>
 .apply_form {
-  min-width: 684px;
+  width: 684px;
 }
 
 .card-header {

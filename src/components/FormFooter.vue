@@ -14,13 +14,13 @@
       @click="changeStep(currentStep + 1, true)"
       size="lg"
       class="test_button"
-      :variant="isSended ? 'success' : 'primary'"
+      :variant="isError ? 'danger' : (isSended ? 'success' : 'primary')"
     >
       <span
         class="icon icon-loading"
         v-if="isLoading"
       />
-      {{ isSended ? "Отправлено" : (isLoading ? "Отправляем" : (isApproved ? "Отправить" :"Продолжить"))  }}
+      {{ isError ? "Ошибка" : (isSended ? "Отправлено" : (isLoading ? "Отправляем" : (isApproved ? "Отправить" :"Продолжить"))) }}
     </b-button>
   </div>
 </div>
@@ -34,6 +34,7 @@ export default {
     isApproved: Boolean,
     isLoading: Boolean,
     isSended: Boolean,
+    isError: Boolean,
   },
   methods: {
     changeStep(i, isMainButton = false)  {

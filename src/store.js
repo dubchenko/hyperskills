@@ -11,18 +11,22 @@ export default new Vuex.Store({
     isApproved: false,
     isLoading: false,
     isSended: false,
+    isError: false,
   },
   plugins: [createPersistedState()],
   mutations: {
-    setCurrentStep: (state, tabNumber) => {
-      if (!state.isSended) {
-        state.currentStep = tabNumber
+    setCurrentStep: (state, stepNumber) => {
+      if (!state.isApproved) {
+        state.currentStep = stepNumber
       }
     },
     setUserSkills: (state, userSkills) => state.userSkills = userSkills,
     setApproved: state => state.isApproved = true,
     setLoading: (state, loadingStatus) => state.isLoading = loadingStatus,
     setSended: state => state.isSended = true,
+    setError: (state, error) => {
+      state.isError = error
+    }
   },
   getters: {
     currentStep: state => state.currentStep,
@@ -30,5 +34,6 @@ export default new Vuex.Store({
     isApproved: state => state.isApproved,
     isLoading: state => state.isLoading,
     isSended: state => state.isSended,
+    isError: state => state.isError,
   }
 })
