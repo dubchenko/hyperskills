@@ -37,7 +37,7 @@ export default {
     }
   },
   mounted() {
-    fetch('/data/skills.json')
+    fetch('data/skills.json')
       .then(r => r.json())
       .then(json => {
         this.$store.state.userSkills ? this.skills = this.$store.state.userSkills : this.skills = json
