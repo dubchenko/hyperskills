@@ -69,6 +69,7 @@ export default {
   transition: all .2s ease-in;
   width: 32%;
   height: 10px;
+  cursor: pointer;
 }
 
 .level_1 {
