@@ -3,13 +3,17 @@
   <h3 class="step-title">Шаг 1: Расскажи нам о своих навыках</h3>
   <skills-levels />
   <div class="skills-list">
-    <div v-for="item in skills" :key="item.slug" class="skill-item py-3">
+    <div v-for="(item, index) in skills" :key="item.slug" class="skill-item py-3">
       <div class="skill-title">
         <h4>{{ item.title }}</h4>
-        <p>{{ levelsTitles[item.score] }}</p>
+        <p>{{ levelsTitles[hoveredSkill[index]] || levelsTitles[item.score] }}</p>
       </div>
       <div class="skill-score">
-        <skill-score v-model="item.score" :item="item" />
+        <skill-score
+          v-model="item.score"
+          :index="index"
+          @itemHover="itemHover"
+        />
       </div>
     </div>
   </div>
@@ -31,6 +35,7 @@ export default {
   data() {
     return {
       skills: null,
+      hoveredSkill: {},
       levelsTitles: levelsTitles
     }
   },
@@ -45,9 +50,13 @@ export default {
       if (mutation.type === 'setCurrentStep')
         if (this.$store.getters.skills !== this.skills)
           this.$store.commit('setSkills', this.skills)
-
     });
   },
+  methods: {
+    itemHover(i) {
+      i.item ? this.$set(this.hoveredSkill, i.index, i.item) : this.hoveredSkill = {}
+    }
+  }
 }
 </script>
 

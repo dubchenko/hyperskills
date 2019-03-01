@@ -28,9 +28,7 @@ export default new Vuex.Store({
     setApproved: state => state.isApproved = true,
     setLoading: (state, loadingStatus) => state.isLoading = loadingStatus,
     setSended: state => state.isSended = true,
-    setError: (state, error) => {
-      state.isError = error
-    }
+    setError: (state, error) => state.isError = error
   },
   getters: {
     currentStep: state => state.currentStep,

@@ -30,6 +30,7 @@ export default {
   name: "SkillScore",
   props: {
     value: Number,
+    index: Number,
   },
   data() {
     return {
@@ -39,9 +40,11 @@ export default {
   methods: {
     setHover(i) {
       this.hoverItem = i
+      this.$emit('itemHover', { 'index': this.index, 'item': i })
     },
     resetHover() {
       this.hoverItem = null
+      this.$emit('itemHover', { 'index': this.index, 'item': null })
     },
     setScore(i) {
       if (i >= 1 && i <= 4) {

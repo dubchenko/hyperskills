@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 import FormHeader from '@/components/FormHeader'
 import FormFooter from '@/components/FormFooter'
 
@@ -47,8 +49,15 @@ export default {
     }
   },
   computed: {
+    ...mapGetters([
+      'currentStep',
+      'isApproved',
+      'isLoading',
+      'isSended',
+      'isError',
+    ]),
     currentComponent() {
-			switch (this.$store.getters.currentStep) {
+			switch (this.currentStep) {
         case 1:
           return 'step-one'
         case 2:
@@ -59,21 +68,6 @@ export default {
           return 'step-one'
       }
     },
-    currentStep() {
-      return this.$store.getters.currentStep
-    },
-    isApproved() {
-      return this.$store.getters.isApproved;
-    },
-    isLoading() {
-      return this.$store.getters.isLoading;
-    },
-    isSended() {
-      return this.$store.getters.isSended;
-    },
-    isError() {
-      return this.$store.getters.isError;
-    }
   },
   methods: {
     changeStep(i)  {
