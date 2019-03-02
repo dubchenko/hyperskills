@@ -9,7 +9,7 @@
       Назад
     </b-button>
   </div>
-  <div :class="{ 'form-footer_right' : currentStep !== 1 }">
+  <div :class="{ 'form-footer_right' : (currentStep !== 1) }">
     <b-button
       @click="changeStep(currentStep + 1, true)"
       size="lg"

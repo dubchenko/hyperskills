@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex"
+
 export default {
   name: "StepTwo",
   data() {
@@ -26,11 +28,20 @@ export default {
     }
   },
   mounted() {
-    this.$store.subscribe(mutation => {
-      if (mutation.type === 'setCurrentStep')
-        this.$store.commit('setBiography', this.biography)
-    });
+    this.subscribe = this.$store.subscribeAction(action => {
+      if (action.type === 'setCurrentStep')
+        if (this.$store.getters.biography !== this.biography)
+          this.setBiography(this.biography)
+    })
   },
+  beforeDestroy() {
+    this.subscribe()
+  },
+  methods: {
+    ...mapActions([
+      'setBiography'
+    ]),
+  }
 }
 </script>
 

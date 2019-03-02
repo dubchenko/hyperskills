@@ -30,7 +30,7 @@ export default {
   name: "SkillScore",
   props: {
     value: Number,
-    index: Number,
+    index: String,
   },
   data() {
     return {

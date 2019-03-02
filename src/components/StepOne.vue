@@ -24,7 +24,9 @@
 import SkillsLevels from "./ui/SkillsLevels"
 import SkillScore from "./ui/SkillScore"
 
-import { levelsTitles } from "@/assets/skills.js"
+import { levelsTitles } from "@/assets/skills"
+
+import { mapActions } from "vuex"
 
 export default {
   name: "StepOne",
@@ -34,25 +36,42 @@ export default {
   },
   data() {
     return {
-      skills: null,
+      skills: JSON.parse(JSON.stringify(this.$store.getters.skills)),
       hoveredSkill: {},
       levelsTitles: levelsTitles
     }
   },
   mounted() {
-    fetch('data/skills.json')
-      .then(r => r.json())
-      .then(json => {
-        this.$store.getters.skills ? this.skills = this.$store.getters.skills : this.skills = json
-      })
+    this.loadSkills()
 
-    this.$store.subscribe(mutation => {
-      if (mutation.type === 'setCurrentStep')
-        if (this.$store.getters.skills !== this.skills)
-          this.$store.commit('setSkills', this.skills)
-    });
+    this.subscribe = this.$store.subscribeAction(action => {
+      if (action.type === 'setCurrentStep')
+        if (JSON.stringify(this.$store.getters.skills) !== JSON.stringify(this.skills))
+          this.setSkills(this.skills)
+    })
+  },
+  beforeDestroy() {
+    this.subscribe()
   },
   methods: {
+    ...mapActions([
+      'setSkills'
+    ]),
+    loadSkills() {
+      fetch('data/skills.json')
+        .then(r => r.json())
+        .then(json => {
+          const skillsMap = json.reduce((obj, item) => {
+            obj[item.slug] = item
+            return obj
+          }, {})
+
+          if (Object.keys(this.skills).length)
+            return this.skills = Object.assign(skillsMap, this.skills)
+
+          this.skills = skillsMap
+        })
+    },
     itemHover(i) {
       i.item ? this.$set(this.hoveredSkill, i.index, i.item) : this.hoveredSkill = {}
     }

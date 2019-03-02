@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 import FormHeader from '@/components/FormHeader'
 import FormFooter from '@/components/FormFooter'
@@ -35,7 +35,7 @@ import StepTwo from '@/components/StepTwo.vue'
 import StepThree from '@/components/StepThree.vue'
 
 export default {
-  name: 'home',
+  name: 'ApplyForm',
   components: {
     FormHeader,
     FormFooter,
@@ -70,34 +70,32 @@ export default {
     },
   },
   methods: {
-    changeStep(i)  {
-      if (this.isSended) {
-        return
-      }
+    ...mapActions([
+      'setCurrentStep',
+      'setApproved',
+      'setLoading',
+      'setSended',
+      'setError',
+    ]),
+    changeStep(e)  {
+      if (e.isMainButton && this.isApproved && !this.isSended) return this.sendForm()
 
-      if (i.isMainButton && this.isApproved) {
-        this.sendForm()
-        return
-      }
+      if (e.isMainButton && this.currentStep == 3 && !this.isSended) return this.setApproved()
 
-      if (i.isMainButton && this.currentStep == 3) {
-        this.$store.commit('setApproved')
-      } else {
-        this.$store.commit('setCurrentStep', i.step);
-      }
+      this.setCurrentStep(e.step)
     },
     sendForm() {
-      this.$store.commit('setLoading', true)
+      this.setLoading(true)
       setTimeout(() => {
         let result = Math.random() >= 0.5
-        this.$store.commit('setLoading', false)
-        result ? this.$store.commit('setSended') : this.handleError()
+        this.setLoading(false)
+        result ? this.setSended() : this.handleError()
       }, 3000)
     },
     handleError() {
-      this.$store.commit('setError', true)
+      this.setError(true)
       setTimeout(() => {
-        this.$store.commit('setError', false)
+        this.setError(false)
       }, 1500)
     }
   },
