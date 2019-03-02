@@ -115,6 +115,12 @@ h4 {
   border-color: #1EB295 !important;
 }
 
+@media screen and (max-width: 768px) {
+  #app {
+    padding: 10px;
+  }
+}
+
 @keyframes spin {
   100% {
     transform: rotate(360deg);

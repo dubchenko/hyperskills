@@ -48,4 +48,10 @@ export default {
 .levels-titles p:last-child {
   text-align: right;
 }
+
+@media screen and (max-width: 572px) {
+  .skills-levels {
+    display: none;
+  }
+}
 </style>
