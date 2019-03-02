@@ -104,7 +104,7 @@ export default {
 
 <style scoped>
 .apply-form {
-  max-width: 684px;
+  width: 684px;
 }
 
 .card-header {
@@ -124,6 +124,10 @@ export default {
 }
 
 @media screen and (max-width: 768px) {
+  .apply-form {
+    width: 100%;
+  }
+
   .card-body {
     padding: 35px 20px 20px 20px;
   }
