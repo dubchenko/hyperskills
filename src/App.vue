@@ -29,6 +29,10 @@
   font-style: normal;
 }
 
+body {
+  background-color: #303142 !important;
+}
+
 #app {
   font-family: 'Formular', Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -39,7 +43,6 @@
   min-height: 100vh;
   padding: 100px;
   color: #000000;
-  background-color: #303142;
 }
 
 h1,

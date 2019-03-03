@@ -43,11 +43,6 @@ export default {
     StepTwo,
     StepThree
   },
-  data() {
-    return {
-      skills: null,
-    }
-  },
   computed: {
     ...mapGetters([
       'currentStep',
@@ -88,7 +83,7 @@ export default {
     },
     sendForm() {
       this.setLoading(true)
-      
+
       setTimeout(() => {
         let result = Math.random() >= 0.5
         this.setLoading(false)
