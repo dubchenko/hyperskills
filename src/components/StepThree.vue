@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex"
+
 import { levelsTitles } from "@/assets/skills.js"
 
 export default {
@@ -28,12 +30,10 @@ export default {
     }
   },
   computed: {
-    skills() {
-			return this.$store.getters.skills;
-    },
-    isApproved() {
-      return this.$store.getters.isApproved;
-    }
+    ...mapGetters([
+      'skills',
+      'isApproved',
+    ])
   },
 }
 </script>

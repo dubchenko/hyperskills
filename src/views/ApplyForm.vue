@@ -78,14 +78,17 @@ export default {
       'setError',
     ]),
     changeStep(e)  {
-      if (e.isMainButton && this.isApproved && !this.isSended) return this.sendForm()
+      if (e.isMainButton && this.isApproved && !this.isSended)
+        return this.sendForm()
 
-      if (e.isMainButton && this.currentStep == 3 && !this.isSended) return this.setApproved()
+      if (e.isMainButton && this.currentStep == 3 && !this.isSended)
+        return this.setApproved(true)
 
       this.setCurrentStep(e.step)
     },
     sendForm() {
       this.setLoading(true)
+      
       setTimeout(() => {
         let result = Math.random() >= 0.5
         this.setLoading(false)
@@ -94,6 +97,7 @@ export default {
     },
     handleError() {
       this.setError(true)
+
       setTimeout(() => {
         this.setError(false)
       }, 1500)

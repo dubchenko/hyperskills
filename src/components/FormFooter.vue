@@ -1,6 +1,6 @@
 <template>
 <div class="form-footer">
-  <div v-if="currentStep !== 1" class="form-footer_left">
+  <div v-if="!isSended && currentStep !== 1" class="form-footer_left">
     <b-button
       class="button_back"
       @click="changeStep(currentStep - 1)"
@@ -9,7 +9,7 @@
       Назад
     </b-button>
   </div>
-  <div :class="{ 'form-footer_right' : (currentStep !== 1) }">
+  <div :class="{ 'form-footer_right' : (!isSended && currentStep !== 1) }">
     <b-button
       @click="changeStep(currentStep + 1, true)"
       size="lg"

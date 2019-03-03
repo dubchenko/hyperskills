@@ -24,7 +24,11 @@ const getters = {
 
 const actions = {
   setCurrentStep({ commit, state }, step) {
-    if (state.isSended || state.isApproved || state.currentStep == step) return
+    if (state.isSended || state.currentStep == step)
+      return
+
+    if (state.isApproved)
+      commit(types.APPROVED, false)
 
     commit(types.SET_STEP, { step })
   },
@@ -34,8 +38,8 @@ const actions = {
   setBiography({ commit }, biography) {
     commit(types.SET_BIOGRAPHY, { biography })
   },
-  setApproved({ commit }) {
-    commit(types.APPROVED)
+  setApproved({ commit }, status) {
+    commit(types.APPROVED, { status })
   },
   setLoading({ commit }, loadingStatus) {
     commit(types.LOADING, { loadingStatus })
@@ -58,8 +62,8 @@ const mutations = {
   [types.SET_BIOGRAPHY] (state, { biography }) {
     state.form.biography = biography
   },
-  [types.APPROVED] (state) {
-    state.isApproved = true
+  [types.APPROVED] (state, { status }) {
+    state.isApproved = status
   },
   [types.LOADING] (state, { loadingStatus }) {
     state.isLoading = loadingStatus
