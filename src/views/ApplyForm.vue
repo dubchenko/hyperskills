@@ -4,6 +4,7 @@
     <template slot="header">
       <form-header
         :currentStep="currentStep"
+        :isSended="isSended"
         @changeStep="changeStep"
       />
     </template>

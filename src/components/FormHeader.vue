@@ -7,6 +7,7 @@
           :key="i"
           @click="changeStep(i)"
           class="header-nav-button"
+          :disabled="isSended"
           :variant="(currentStep == i) ? 'primary' : 'link'"
         >шаг {{ i }}</b-button>
       </template>
@@ -19,6 +20,7 @@ export default {
   name: "FormHeader",
   props: {
     currentStep: Number,
+    isSended: Boolean,
   },
   methods: {
     changeStep(i) {

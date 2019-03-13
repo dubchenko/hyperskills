@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     textLength() {
-      return this.biography.length
+      return this.biography.replace(/\s/g, "").length
     }
   },
   mounted() {
